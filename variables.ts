@@ -19,3 +19,15 @@ tvShow = "The Other Two";
 let isFunny = false;
 isFunny = true;
 // isFunny = "sadsa"
+
+
+//Any Type: Escape hatch. turns off type checking for this variable. sort of defeats the purpose of TS and types.
+
+// let thing: any = "hello";
+// thing = 1;
+// thing = false;
+// thing();
+// thing.toUpperCase();
+
+let thing = "hello";
+thing();
