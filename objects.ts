@@ -28,46 +28,160 @@
 
 //type aliases
 
+// type Point = {
+//     x: number;
+//     y: number;
+// }
+
+// let coordinate: Point = { x: 34, y: 15 };
+
+// function randomCoord(): Point {
+//   return { x: Math.random(), y: Math.random() };
+// }
+
+// type Song = {
+//     title:"Unchained",
+//     artist: "Righteous",
+//     numStreams: 1231321,
+//     credits: {
+//         producer: "phil",
+//         writer: "Alex"
+//         }
+// }
+
+// function calculatePayout(song: Song): number {
+//     return song.numStreams * .0033
+// }
+
+// function printSong(song:Song): void {
+//     console.log(`${song.title} - ${song.artist}`)
+// }
+
+
+// const mySong: Song = {
+//     title:"Unchained",
+//     artist: "Righteous",
+//     numStreams: 1231321,
+//     credits: {
+//         producer: "phil",
+//         writer: "Alex"
+//     }
+// }
+
+// calculatePayout(mySong);
+// printSong(mySong);
+
+
+
+//optional properties. use a question mark for optional properties.
 type Point = {
     x: number;
     y: number;
+    z?: number;
 }
 
-let coordinate: Point = { x: 34, y: 15 };
+const myPoint: Point = {x: 1, y: 3, z:1 }
 
-function randomCoord(): Point {
-  return { x: Math.random(), y: Math.random() };
+
+//readonly modifier
+type User = {
+    readonly id: number;
+    username: string;
 }
 
-type Song = {
-    title:"Unchained",
-    artist: "Righteous",
-    numStreams: 1231321,
-    credits: {
-        producer: "phil",
-        writer: "Alex"
-        }
+const user: User = {
+    id: 1232,
+    username: "catgirl"
 }
 
-function calculatePayout(song: Song): number {
-    return song.numStreams * .0033
+//intersection types
+type Circle = {
+    radius: number;
 }
 
-function printSong(song:Song): void {
-    console.log(`${song.title} - ${song.artist}`)
+type Colorful = {
+    color: string;
+}
+
+type ColorfulCircle = Circle & Colorful;
+
+const happyFace: ColorfulCircle = {
+    radius: 4,
+    color: "yellow"
+}
+
+type Cat = {
+    numLives: number
+}
+
+type Dog = {
+    breed: string
+}
+
+type CatDog = Cat & Dog & {
+    age: number;
+}
+
+const christy: CatDog = {
+    numLives: 7,
+    breed: "Corgi",
+    age: 5
 }
 
 
-const mySong: Song = {
-    title:"Unchained",
-    artist: "Righteous",
-    numStreams: 1231321,
-    credits: {
-        producer: "phil",
-        writer: "Alex"
+// Write the Movie type alias to make the following two variables properly typed
+// Make sure that "originalTitle" is optional and "title" is readonly
+
+type Movie = {
+    readonly title: string;
+    originalTitle?: string;
+    director: string;
+    releaseYear: number;
+    boxOffice : {
+        budget: number;
+        grossUS: number;
+        grossWorldwide: number;
     }
+
+}
+const dune: Movie = {
+    title: "Dune",
+    originalTitle: "Dune Part One",
+    director: "Denis Villeneuve",
+    releaseYear: 2021,
+    boxOffice: {
+      budget: 165000000,
+      grossUS: 108327830,
+      grossWorldwide: 400671789,
+    },
+  };
+  
+  const cats: Movie = {
+    title: "Cats",
+    director: "Tom Hooper",
+    releaseYear: 2019,
+    boxOffice: {
+      budget: 95000000,
+      grossUS: 27166770,
+      grossWorldwide: 73833348,
+    },
+  };
+  
+  // Write a function called getProfit that accepts a single Movie object
+  // It should return the movie's worldwide gross minus its budget
+  
+  // For example...
+  // getProfit(cats) => -21166652
+  
+// const getProfit(movie: Movie): number => {
+//     return movie.boxOffice.grossWorldwide - movie.boxOffice.budget;
+// }
+
+function getProfit(movie: Movie): number {
+    const {grossWorldwide, budget} = movie.boxOffice;
+    return grossWorldwide - budget;
 }
 
-calculatePayout(mySong);
-printSong(mySong);
-
+// function getProfit({boxOffice: {grossWorldwide, budget}}: Movie) ;number {
+//     return grossWorldwide - budget;
+// }
