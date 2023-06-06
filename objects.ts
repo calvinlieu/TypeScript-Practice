@@ -74,11 +74,11 @@
 
 
 //optional properties. use a question mark for optional properties.
-type Point = {
-    x: number;
-    y: number;
-    z?: number;
-}
+// type Point = {
+//     x: number;
+//     y: number;
+//     z?: number;
+// }
 
 const myPoint: Point = {x: 1, y: 3, z:1 }
 
